@@ -1,4 +1,4 @@
-# demo-00
+# demo-00 Hello Webpack
 
 按照惯例，从**hello webpack**开始我们的第一个demo。
 
