@@ -6,5 +6,9 @@ module.exports = {
         path: __dirname + '/dist/',
         filename: 'index.js'
     },
-    plugins: [new HtmlWebpackPlugin()]
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'webpack-demo-02'
+        })
+    ]
 }
