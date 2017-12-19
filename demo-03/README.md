@@ -12,6 +12,54 @@
 
 从style-loader的官方说明来看，这正是我们需要的。但是在使用这个loader之前，我们还需要另外一个loader：css-loader，关于这两个loader的关系，在[stackoverflow](https://stackoverflow.com/questions/34039826/webpack-style-loader-vs-css-loader)上有一个解释：
 
-> The CSS loader takes a CSS file and returns the CSS with imports and url(...) resolved via webpack's require functionality, It doesn't actually do anything with the returned CSS.
-> The style loader takes CSS and actually inserts it into the page so that the styles are active on the page.
-> They perform different operations, but it's often useful to chain them together, like Unix pipes.
+ - The CSS loader takes a CSS file and returns the CSS with imports and url(...) resolved via webpack's require functionality, It doesn't actually do anything with the returned CSS.
+ - The style loader takes CSS and actually inserts it into the page so that the styles are active on the page.
+ - They perform different operations, but it's often useful to chain them together, like Unix pipes.
+
+翻译并简化就是：
+
+ - css-loader只是负责把css文件引入进来（没有它，在css中使用import语法就报错）
+ - style-loader负责把css的内容插入到html中
+ - css-loader和style-loader是合作关系，并且是链式关系，有点像unix中的通道
+
+## 使用方法
+
+ - 安装相关的npm包
+
+```
+npm install --save-dev style-loader css-loader
+```
+
+ - 在webpack中添加loader配置项
+
+```
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            },
+        ]
+    },
+```
+
+ - 创建hello.css文件
+
+```
+body {
+    color: red;
+}
+```
+
+ - 修改index.js文件，引入css
+
+```
+require('./hello.js');
+require('./hello.css');
+```
+
+## webpack loader概念
+
+> Loaders are transformations that are applied on the source code of a module. They allow you to pre-process files as you import or “load” them. 
+
+从官方文档来看，loader的作用主要是对源文件进行预处理，其实在这个例子中不是太明显，如果你是用less来书写css，那么从less到css的转换就需要对应的loader来进行操作。
