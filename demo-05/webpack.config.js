@@ -5,7 +5,7 @@ module.exports = {
     entry: './index.js',
     output: {
         path: __dirname + '/dist/',
-        filename: 'index.js'
+        filename: 'index.[hash:7].js'
     },
     module: {
         rules: [
@@ -22,6 +22,6 @@ module.exports = {
             title: 'webpack-demo-05'
         }),
 
-        new ExtractTextPlugin('index.css'),
+        new ExtractTextPlugin('index.[hash:7].css'),
     ]
 }
