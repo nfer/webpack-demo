@@ -10,9 +10,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.less$/,
                 use: ExtractTextPlugin.extract({
-                    use: ['css-loader']
+                    use: ['css-loader', 'less-loader']
                 })
             },
         ]

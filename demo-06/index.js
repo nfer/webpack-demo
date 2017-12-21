@@ -1,2 +1,2 @@
 require('./hello.js');
-require('./hello.css');
+require('./hello.less');
