@@ -6,4 +6,4 @@
  1. [webpack loader](./demo-03/)
  1. [把css打包成文件](./demo-04/)
  1. [缓存处理](./demo-05/)
- 1. [CSS预处理语言](./demo-06/)
+ 1. [CSS扩展语法](./demo-06/)
