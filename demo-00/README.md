@@ -4,16 +4,17 @@
 
 ## 文件结构
 
- - index.html: 入口页面
- - index.js: 入口js文件，只是引入了hell.js
- - hello.js: 实际输出hello webpack的逻辑部分
+ - index.html: 页面入口文件
+ - index.js: js入口文件
+ - hello.js: js逻辑文件
  - package.json: 项目描述文件
  - webpack.config.js: webpack配置文件
 
 ## 源码解析
-index.html
 
-```
+ - index.html
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,28 +26,28 @@ index.html
 </html>
 ```
 
-index.html页面的代码简单的可怕，唯一的逻辑就是引入了"./dist/index.js"文件。特别需要注意的是，这里引入的index.js目录是dist，这个我们稍后会讲。
+index.html页面唯一的逻辑就是引入了"./dist/index.js"文件。
 
-index.js
+ - index.js
 
-```
+```js
 require('./hello.js');
 ```
 
-index.js文件比index.html简单的还可怕，只是引入了hello.js文件。
+index.js只是引入了hello.js文件。
 
-hello.js
+ - hello.js
 
-```
+```js
 var textnode = document.createTextNode("hello webpack");
 document.body.appendChild(textnode);
 ```
 
-真正的输出逻辑在这里：创建了一个txt节点，并插入到body中。
+真正的输出逻辑在这里：创建了一个text节点并插入到body中。
 
-webpack.config.js
+ - webpack.config.js
 
-```
+```js
 module.exports = {
     entry: './index.js',
     output: {
@@ -59,11 +60,11 @@ module.exports = {
 webpack配置描述：
 
  - entry指定了webpack打包的入口文件
- - output指定了打包后的文件名以及目录，即index.html中引入index.js时的相对路径
+ - output指定了打包后的文件名以及目录
 
 ## 运行步骤
 
-```
+```shell
 git clone https://github.com/nfer/webpack-demo.git
 cd webpack-demo/demo-00
 npm install
@@ -78,7 +79,7 @@ npm install
 
 如果在webpack.config.js中设置output.path使用相对地址：
 
-```
+```js
 module.exports = {
     entry: './index.js',
     output: {
@@ -100,21 +101,37 @@ Invalid configuration object. Webpack has been initialised using a configuration
 
 ### 2. webpack配置中的entry必须给出确切路径
 
-你可以使用相对路径的方式来定义entry，`entry: './index.js'`；也可以使用绝对路径的方式来定义，`entry: __dirname + '／index.js'`。但是不指定路径的情况下，`entry: 'index.js'`，webpack是找不到index.js文件的。
+你可以使用相对路径的方式来定义entry，`entry: './index.js'`；也可以使用绝对路径的方式来定义，`entry: __dirname + '／index.js'`。但是不指定路径的情况下，webpack是找不到index.js文件的。
+
+```js
+module.exports = {
+    entry: 'index.js',
+    output: {
+        path: './dist/',
+        filename: 'index.js'
+    }
+}
+```
 
 运行webpack会报以下错误：
 
 ```console
-ERROR in Entry module not found: Error: Can't resolve 'index.js' in '/Users/nferzhuang/git/github/nfer/webpack-demo/demo-00'
+ERROR in Entry module not found: Error: Can't resolve 'index.js' in 'webpack-demo/demo-00'
 ```
 
 ### 3. require引入文件时必须给出确切路径
 
 这个坑和上面的一样，都是webpack打包的时候找不到指定文件。
 
+```js
+require('hello.js');
+```
+
+运行webpack会报以下错误：
+
 ```console
 ERROR in ./index.js
-Module not found: Error: Can't resolve 'hello.js' in '/Users/nferzhuang/git/github/nfer/webpack-demo/demo-00'
+Module not found: Error: Can't resolve 'hello.js' in 'webpack-demo/demo-00'
  @ ./index.js 1:0-19
 ```
 
