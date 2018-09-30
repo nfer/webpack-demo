@@ -14,19 +14,19 @@ webpack核心仓库提供了这样一个插件，作用就是从bundle中提取�
 
  - 安装插件
 
-```
+```shell
 npm i --save-dev mini-css-extract-plugin
 ```
 
  - 在webpack中引入插件
 
-```
+```js
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 ```
 
  - 创建提取loader
 
-```
+```js
         rules: [
             {
                 test: /\.css$/,

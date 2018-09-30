@@ -4,8 +4,7 @@
 上一节我们是通过命令`./node_modules/.bin/webpack`来启动webpack，因为笔者的开发环境是Mac，所以这个命令是没问题的，但是Windows的小伙伴表示很受伤，运行命令出现以下错误：
 
 ```
-'.' 不是内部或外部命令，也不是可运行的程序
-或批处理文件。
+'.' 不是内部或外部命令，也不是可运行的程序或批处理文件。
 ```
 
 那么Windows下怎么输入这个命令呢？正确答案是，把'/'换成'\'： `.\node_modules\.bin\webpack`
@@ -44,7 +43,7 @@ npm提供了run-script能力，其中有一个非常重要的就是：
 执行`npm run getPATH`命令，输出npm run命令下的PATH环境变量值：
 
 ```
-/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/nfer/git/github/nfer/webpack-demo/demo-01/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:/usr/local/mysql/bin
+/usr/local/lib/node_modules/npm/bin/node-gyp-bin:webpack-demo/demo-01/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/mysql/bin:/usr/local/mysql/bin
 ```
 
 通过对比，我们发现当前目录下的`node_modules/.bin`已经添加到环境变量PATH的值中，并且位置是在系统环境变量之前。
@@ -65,4 +64,4 @@ C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\Wind
 C:\Users\nfer\AppData\Roaming\nvm\v6.12.2\node_modules\npm\bin\node-gyp-bin;E:\git\github\nfer\webpack-demo\demo-00\node_modules\.bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;%NVM_HOME%;%NVM_SYMLINK%;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Users\nfer\AppData\Roaming\npm;C:\Users\nfer\AppData\Roaming\nvm;C:\Program Files\nodejs
 ```
 
-结果同样显示，在win环境下，运行npm run脚本时，`node_modules\.bin`会自动的加入到环境变量下。
+结果同样显示，在win环境下，运行npm run脚本时，`node_modules\.bin`也会自动的加入到环境变量下。

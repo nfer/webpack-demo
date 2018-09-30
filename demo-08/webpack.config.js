@@ -1,5 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -30,5 +31,7 @@ module.exports = {
         new MiniCssExtractPlugin({
           filename: "index.[hash:7].css"
         }),
+
+        new CleanWebpackPlugin(['dist']),
     ]
 }

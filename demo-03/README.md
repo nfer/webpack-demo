@@ -2,13 +2,15 @@
 
 ## 引言
 
-在前面的demo中，我们只使用了js，而作为前端核心三剑客之一的css目前还没有使用，这一部分我们就是来引入css。
+在前面的demo中，我们只使用了js，而作为前端核心三剑客之一的css目前还没有使用，这一部分我们就引入css。
 
-常规的使用方式是，创建.css文件，然后通过link的方式引入到html文件中或者在html文件中通过style的方式来插入css内容。但是在demo-02中我们大刀阔斧直接砍掉了index.html文件，而是通过webpack来生成html文件，因此问题来了：webpack能不能在生成的html文件中自动插入style或者link css文件？
+常规的使用方式是，通过link引入外部css文件或在html文件头部插入style代码，但是在demo-02中我们大刀阔斧直接砍掉了index.html文件，然后通过webpack来生成html文件。
+
+因此问题来了：webpack能不能在生成的html文件中自动插入style或者link css文件？
 
 ## style-loader
 
-> Adds CSS to the DOM by injecting a <style> tag
+> Adds CSS to the DOM by injecting a `style` tag
 
 从style-loader的官方说明来看，这正是我们需要的。但是在使用这个loader之前，我们还需要另外一个loader：css-loader，关于这两个loader的关系，在[stackoverflow](https://stackoverflow.com/questions/34039826/webpack-style-loader-vs-css-loader)上有一个解释：
 
@@ -26,13 +28,13 @@
 
  - 安装相关的npm包
 
-```
+```shell
 npm install --save-dev style-loader css-loader
 ```
 
  - 在webpack中添加loader配置项
 
-```
+```js
     module: {
         rules: [
             {
@@ -45,7 +47,7 @@ npm install --save-dev style-loader css-loader
 
  - 创建hello.css文件
 
-```
+```css
 body {
     color: red;
 }
@@ -53,10 +55,12 @@ body {
 
  - 修改index.js文件，引入css
 
-```
+```js
 require('./hello.js');
 require('./hello.css');
 ```
+
+运行`npm run build`之后打开index.html页面可以看到，字体的颜色变为红色。并且使用编辑器打开生成的index.html文件，可以看到在head部分插入了style代码，具体内容为hello.css的内容。
 
 ## webpack loader概念
 
