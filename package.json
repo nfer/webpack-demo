@@ -1,0 +1,14 @@
+{
+  "name": "learn-webpack-by-demo",
+  "version": "0.0.1",
+  "description": "learn webpack by demo step by step",
+  "scripts": {
+    "start": "gitbook serve",
+    "build": "gitbook build"
+  },
+  "author": "nferzhuang",
+  "license": "MIT",
+  "dependencies": {
+    "gitbook-cli": "^2.3.2"
+  }
+}
