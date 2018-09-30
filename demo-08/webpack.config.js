@@ -1,5 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -25,5 +26,7 @@ module.exports = {
         }),
 
         new ExtractTextPlugin('[name].[hash:7].css'),
+
+        new CleanWebpackPlugin(['dist']),
     ]
 }
