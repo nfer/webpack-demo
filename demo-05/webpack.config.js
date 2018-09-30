@@ -1,5 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: 'development',
@@ -12,9 +12,10 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    use: ['css-loader']
-                })
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ]
             },
         ]
     },
@@ -23,6 +24,8 @@ module.exports = {
             title: 'webpack-demo-05'
         }),
 
-        new ExtractTextPlugin('index.[hash:7].css'),
+        new MiniCssExtractPlugin({
+          filename: "index.[hash:7].css"
+        }),
     ]
 }

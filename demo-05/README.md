@@ -21,7 +21,7 @@
         new ExtractTextPlugin('index.[hash:7].css'),
 ```
 
-注意，上面的修改设计到两处，webpack的参数以及extract-text-webpack-plugin插件的参数，因为该插件是由webpack官方维护，所以在参数设置做了尽量统一。
+注意，上面的修改设计到两处，webpack的参数以及mini-css-extract-plugin插件的参数，因为该插件是由webpack官方维护，所以在参数设置做了尽量统一。
 
 再次运行`npm run build`进行打包后，发现dist目录下生成的js和css文件名都带上了hash值：
 
