@@ -2,6 +2,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: './index.js',
     output: {
         path: __dirname + '/dist/',
